@@ -2,19 +2,13 @@ package com.songjing.oasys.staff.controller;
 
 
 import com.baomidou.mybatisplus.extension.api.ApiController;
-import com.songjing.oasys.staff.entity.User;
 import com.songjing.oasys.staff.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,26 +32,17 @@ public class UserController extends ApiController {
 
         String password = param.get("password");
         String username = param.get("username");
-        if (username!=null&&"".equals(username)){
-            return false;
-        }
-        List<User> DbUser = userService.list();
-        for (User user: DbUser ) {
-            log.info("================username:"+username);
-            log.info("================user.getUserName():"+user.getUserName());
-            log.info("================user.getUserName().equals(username):"+user.getUserName().equals(username));
-            if (user.getUserName().equals(username)){
-                log.info("================password:"+password);
-                log.info("================user.getPassword():"+user.getPassword());
-                log.info("================user.getPassword().equals(password):"+user.getPassword().equals(password));
-                System.out.println(Arrays.toString(password.getBytes()));
-                System.out.println(Arrays.toString(user.getPassword().getBytes()));
-                if (user.getPassword().equals(password)){
-                    return true;
-                }
-            }
-        }
-        return false;
+        boolean login = userService.login(username, password);
+
+        return login;
+    }
+
+    @ApiOperation(value = "查询用户信息接口", notes = "查询用户信息接口")
+    @RequestMapping(value = "/{id}" ,method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public Map<String, Object> getStaffInfoById(@PathVariable("id") int id){
+        Map<String, Object> staffInfoById = userService.getStaffInfoById(id);
+        log.info("================staffInfoById:"+staffInfoById);
+        return staffInfoById;
     }
 
 }

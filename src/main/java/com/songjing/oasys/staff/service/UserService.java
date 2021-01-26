@@ -4,6 +4,8 @@ package com.songjing.oasys.staff.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.songjing.oasys.staff.entity.User;
 
+import java.util.Map;
+
 /**
  * (User)表服务接口
  *
@@ -12,4 +14,7 @@ import com.songjing.oasys.staff.entity.User;
  */
 public interface UserService extends IService<User> {
 
+    boolean login(String username, String password);
+
+    Map<String,Object> getStaffInfoById(int id);
 }

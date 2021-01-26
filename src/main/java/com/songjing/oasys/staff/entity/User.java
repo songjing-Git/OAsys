@@ -8,12 +8,14 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Date;
+
 
 /**
  * (User)表实体类
  *
  * @author songjing
- * @since 2021-01-05 15:23:13
+ * @since 2021-01-26 17:08:07
  */
 @Data
 @Accessors(chain = true)
@@ -26,7 +28,7 @@ public class User implements Serializable {
      * 员工编号
      */
     @TableField("STAFF_ID")
-    private String staffId;
+    private Integer staffId;
 
     /**
      * 名称
@@ -35,13 +37,19 @@ public class User implements Serializable {
     private String staffName;
 
     /**
-     * 登录账号
+     * 用户头像
+     */
+    @TableField("HEAD_PHOTO")
+    private byte[] headPhoto;
+
+    /**
+     * OA登录账号
      */
     @TableField("USER_NAME")
     private String userName;
 
     /**
-     * 登录密码
+     * OA账号密码
      */
     @TableField("PASSWORD")
     private String password;
@@ -50,25 +58,25 @@ public class User implements Serializable {
      * 性别
      */
     @TableField("GENDER")
-    private String gender;
+    private Integer gender;
 
     /**
      * 生日
      */
     @TableField("BIRTHDAY")
-    private String birthday;
+    private Date birthday;
 
     /**
      * 身份证
      */
     @TableField("ID_CARD")
-    private String idCard;
+    private Long idCard;
 
     /**
      * 婚姻状况  0-未婚，1-已婚，2-离异，3-丧偶
      */
     @TableField("WEDLOCK")
-    private String wedlock;
+    private Integer wedlock;
 
     /**
      * 民族
@@ -80,13 +88,13 @@ public class User implements Serializable {
      * 籍贯
      */
     @TableField("NATIVE_PLACE")
-    private String nativePlace;
+    private Integer nativePlace;
 
     /**
      * 政治面貌
      */
     @TableField("POLITIC_ID")
-    private String politicId;
+    private Integer politicId;
 
     /**
      * 邮箱
@@ -98,7 +106,7 @@ public class User implements Serializable {
      * 电话号码
      */
     @TableField("PHONE")
-    private String phone;
+    private Long phone;
 
     /**
      * 联系地址
@@ -110,13 +118,25 @@ public class User implements Serializable {
      * 所属部门
      */
     @TableField("DEPT_ID")
-    private String deptId;
+    private Integer deptId;
 
     /**
      * 职位等级
      */
     @TableField("JOB_LEVEL_ID")
-    private String jobLevelId;
+    private Integer jobLevelId;
+
+    /**
+     * 工龄
+     */
+    @TableField("WORK_AGE")
+    private Integer workAge;
+
+    /**
+     * 薪资
+     */
+    @TableField("salary_id")
+    private Integer salaryId;
 
     /**
      * 最高学历
@@ -140,29 +160,23 @@ public class User implements Serializable {
      * 入职日期
      */
     @TableField("BEGIN_DATE")
-    private String beginDate;
+    private Date beginDate;
 
     /**
      * 在职状态 0-离职， 1在职
      */
     @TableField("WORK_STATE")
-    private String workState;
+    private Integer workState;
 
     /**
      * 合同起始日期
      */
-    @TableField("begin_contract")
-    private String beginContract;
+    @TableField("BEGIN_CONTRACT")
+    private Date beginContract;
 
     /**
      * 合同终止日期
      */
-    @TableField("end_contract")
-    private String endContract;
-
-    /**
-     * 工龄
-     */
-    @TableField("work_age")
-    private String workAge;
+    @TableField("END_CONTRACT")
+    private Date endContract;
 }
